@@ -22,4 +22,4 @@ Tried to add a specific MX for a subdomain, to be told that I couldn't have a CN
 
 Then stumbled across a note saying that web site support isn't receiving any further development. Love it when I back a winner. Ugh.
 
-Mostly back to square one now. Github pages maybe?
+Mostly back to square one now. Github pages maybe? Something else to learn.
