@@ -5,7 +5,7 @@ content:
    label: Post
    path: _posts
    type: collection
-   fields: [ layout, title, date, categories ]
+   fields:
     - name: layout
       label: Layout
       type: string
