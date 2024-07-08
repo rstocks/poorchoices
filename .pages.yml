@@ -1,0 +1,8 @@
+media: images
+
+content:
+ - name: post
+   label: Post
+   path: _posts
+   type: collection
+   fields: [ layout, title, date, categories ]
