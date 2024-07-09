@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "DNS and hosting"
-date:   2024-07-08 21:03:38 +1000
+title: DNS and hosting
+date: 2024-07-08 21:03:38 +1000
 categories: choice
 ---
 I've been using [Cloudflare](https://cloudflare.com) for DNS hosting for years. The DNS management is great, with lightning fast updates and some cool features.
@@ -12,7 +12,7 @@ Poor choices...
 
 At first, everything seemed fine. However, I quickly ran into the issue that if you have a domain registered with Cloudflare there is no way to delegate it to another name server. "Oh well," I think, "I'll just wait until domains are expiring and then migrate them to another registrar."
 
-Moved a couple over to my long time favourite [Joker](https://joker.com). Discovered that not only are they more expensive (to be expected, Cloudflare claim that don't charge any markup on the wholesale registration costs), but Joke also charge extra for things like domain privacy. Ugh. Oh well, onwards.
+Moved a couple over to my long time favourite [Joker](https://joker.com). Discovered that not only are they more expensive (to be expected, Cloudflare claim that don't charge any markup on the wholesale registration costs), but Joker also charge extra for things like domain privacy. Ugh. Oh well, onwards.
 
 Set up DNS in Fastmail and uploaded site content, all good.
 
