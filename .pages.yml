@@ -20,4 +20,5 @@ content:
       type: select
       options:
         values: [ choice ]
-        
+    - name: body
+      type: body
