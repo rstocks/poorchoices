@@ -21,4 +21,4 @@ content:
       options:
         values: [ choice ]
     - name: body
-      type: body
+      type: text
