@@ -1,0 +1,85 @@
+---
+layout: base.njk
+pageType: post
+---
+<article class="post">
+  <div class="wrap post__wrap">
+    <p class="post__crumb mono">
+      <a href="/">The Archive</a>
+      <span aria-hidden="true">&nbsp;/&nbsp;</span>
+      <span>An Entry</span>
+    </p>
+
+    <header class="post__head">
+      <p class="eyebrow">A Poor Choice, recounted</p>
+      <h1 class="post__title">{{ title }}</h1>
+      {% if dek %}<p class="post__dek">{{ dek }}</p>{% endif %}
+      <p class="post__byline mono">
+        <span>By <strong>{{ author }}</strong></span>
+        <span aria-hidden="true">&middot;</span>
+        <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+        {% if reading_time %}
+          <span aria-hidden="true">&middot;</span>
+          <span>{{ reading_time }} min &ldquo;read,&rdquo; technically</span>
+        {% endif %}
+      </p>
+      {% set realTags = tags | realTags %}
+      {% if realTags.length %}
+        <ul class="post__tags" aria-label="Tags">
+          {% for t in realTags %}
+            <li><a class="tag-chip" href="/tags/{{ t | slugify }}/">{{ t }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </header>
+
+    <aside class="regret-card" aria-label="Regret summary">
+      <header class="regret-card__head mono">The Regret, Catalogued</header>
+      <dl class="regret-card__grid">
+        <div>
+          <dt class="mono">Regret rating</dt>
+          <dd>
+            <span class="pips" aria-hidden="true">{{ regret | regretPips }}</span>
+            <span class="regret-card__num">{{ regret }}<span class="regret-card__denom">/10</span></span>
+          </dd>
+        </div>
+        <div>
+          <dt class="mono">Would do again?</dt>
+          <dd class="regret-card__verdict regret-card__verdict--{{ 'yes' if would_do_again else 'no' }}">
+            {{ "Yes, and probably will" if would_do_again else "No. (Asterisk.)" }}
+          </dd>
+        </div>
+        <div>
+          <dt class="mono">Lesson learned</dt>
+          <dd><em>{{ lesson or "None, frankly." }}</em></dd>
+        </div>
+        {% if cost %}
+        <div>
+          <dt class="mono">Cost</dt>
+          <dd>{{ cost }}</dd>
+        </div>
+        {% endif %}
+      </dl>
+    </aside>
+
+    <div class="post__body prose">
+      {{ content | safe }}
+    </div>
+
+    <footer class="post__foot">
+      <hr />
+      <p class="mono post__foot-line">
+        {% set ft = tags | realTags %}
+        {%- if ft.length -%}
+          Tagged {% for t in ft %}<a href="/tags/{{ t | slugify }}/">#{{ t }}</a>{% if not loop.last %}, {% endif %}{% endfor %}.
+        {%- else -%}
+          Tagged <em>nothing in particular</em>.
+        {%- endif %}
+        Submitted by {{ author }}, who has since made other choices, not all of them better.
+      </p>
+      <p class="post__nav">
+        <a href="/">&larr; back to the archive</a>
+      </p>
+    </footer>
+  </div>
+</article>

@@ -1,0 +1,114 @@
+---
+layout: base.njk
+pageType: contribute
+title: Contribute
+permalink: /contribute/
+---
+<section class="standard">
+  <div class="wrap standard__wrap">
+    <p class="eyebrow">Submissions</p>
+    <h1>Submit a regret.</h1>
+    <p class="dek">
+      We welcome contributions from people who have made at least one decision they would,
+      with the benefit of hindsight, like to formally walk back.
+    </p>
+
+    <div class="prose">
+      <h2>What we're looking for</h2>
+      <ul>
+        <li><strong>First-person.</strong> Your regret, not your housemate's.</li>
+        <li><strong>500&ndash;1,500 words.</strong> Enough to commit. Not enough to spiral.</li>
+        <li><strong>A regret rating, 1&ndash;10.</strong> Be honest. We can tell when you're not.</li>
+        <li><strong>An answer to: &ldquo;Would you do it again?&rdquo;</strong> &ldquo;Yes, and probably will&rdquo; is an acceptable answer.</li>
+        <li><strong>One lesson learned, optional.</strong> &ldquo;None, frankly&rdquo; is also an acceptable answer.</li>
+      </ul>
+
+      <h2>What we are not looking for</h2>
+      <ul>
+        <li>Crimes. (Speak to a lawyer, not us.)</li>
+        <li>Other people's regrets, dressed up as your own.</li>
+        <li>Things that are obviously a flex pretending to be a regret. We can see you.</li>
+      </ul>
+    </div>
+
+    <form
+      class="submission"
+      name="regret-submission"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      action="/thanks/"
+    >
+      {# Netlify needs the form name in a hidden field so the POST is attributed correctly. #}
+      <input type="hidden" name="form-name" value="regret-submission" />
+
+      {# Honeypot — humans don't see it; bots fill it in and get binned. #}
+      <p class="submission__honeypot" hidden aria-hidden="true">
+        <label>Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+      </p>
+
+      <div class="submission__row">
+        <div>
+          <label for="f-name">Your name (or a credible alias)</label>
+          <input id="f-name" name="name" type="text" required placeholder="e.g. Cordelia Fenn" />
+        </div>
+        <div>
+          <label for="f-cat">Primary tag</label>
+          <select id="f-cat" name="primary-tag">
+            <option>hubris</option>
+            <option>purchases</option>
+            <option>work</option>
+            <option>email</option>
+            <option>grooming</option>
+            <option>hobbies</option>
+            <option>neighbours</option>
+            <option>music</option>
+            <option>public-shame</option>
+            <option>optimism</option>
+            <option>other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="submission__field">
+        <label for="f-title">Working title</label>
+        <input id="f-title" name="title" type="text" required placeholder="e.g. I told the barber to 'just have fun with it'" />
+      </div>
+
+      <div class="submission__row">
+        <div>
+          <label for="f-rating">Regret rating (1&ndash;10)</label>
+          <input id="f-rating" name="regret-rating" type="number" min="1" max="10" required placeholder="8" />
+        </div>
+        <div>
+          <label for="f-again">Would you do it again?</label>
+          <select id="f-again" name="would-do-again">
+            <option>No. (Asterisk.)</option>
+            <option>Yes, and probably will</option>
+            <option>I genuinely can&rsquo;t tell</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="submission__field">
+        <label for="f-lesson">Lesson learned, if any</label>
+        <input id="f-lesson" name="lesson" type="text" placeholder="None, frankly." />
+      </div>
+
+      <div class="submission__field">
+        <label for="f-email">Email (optional, in case we need to clarify a detail)</label>
+        <input id="f-email" name="email" type="email" placeholder="you@example.com" />
+      </div>
+
+      <div class="submission__field">
+        <label for="f-body">The regret itself</label>
+        <textarea id="f-body" name="body" required placeholder="Begin somewhere. The middle is fine. The middle is often where regrets live."></textarea>
+      </div>
+
+      <div class="submission__foot">
+        <p class="submission__note">By submitting, you agree to be edited, gently, by someone with their own regrets.</p>
+        <button class="btn" type="submit">Submit for consideration</button>
+      </div>
+    </form>
+  </div>
+</section>

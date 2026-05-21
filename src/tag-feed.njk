@@ -1,0 +1,44 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - all
+    - posts
+    - tagList
+  addAllPagesToCollections: false
+eleventyExcludeFromCollections: true
+permalink: "/tags/{{ tag | slugify }}/feed.xml"
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-au">
+  <title>Poor Choices — #{{ tag }}</title>
+  <subtitle>Entries tagged #{{ tag }}.</subtitle>
+  <link href="{{ ('/tags/' + (tag | slugify) + '/feed.xml') | absoluteUrl(site.url) }}" rel="self" type="application/atom+xml" />
+  <link href="{{ ('/tags/' + (tag | slugify) + '/') | absoluteUrl(site.url) }}" />
+  <updated>{{ collections[tag] | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <id>{{ ('/tags/' + (tag | slugify) + '/') | absoluteUrl(site.url) }}</id>
+  <author>
+    <name>The Committee for Decisions Already Made</name>
+  </author>
+  {%- for post in collections[tag] | reverse %}
+  {%- set absolutePostUrl = post.url | absoluteUrl(site.url) %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ absolutePostUrl }}" />
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+    <author>
+      <name>{{ post.data.author }}</name>
+    </author>
+    {%- if post.data.dek %}
+    <summary>{{ post.data.dek }}</summary>
+    {%- endif %}
+    {%- for t in post.data.tags | realTags %}
+    <category term="{{ t }}" />
+    {%- endfor %}
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | safe }}</content>
+  </entry>
+  {%- endfor %}
+</feed>

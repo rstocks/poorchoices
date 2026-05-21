@@ -1,0 +1,32 @@
+---
+layout: base.njk
+pageType: tags
+title: Tags
+permalink: /tags/
+---
+<section class="standard">
+  <div class="wrap standard__wrap">
+    <p class="eyebrow">The Index</p>
+    <h1>Tags.</h1>
+    <p class="dek">
+      An incomplete taxonomy of how, exactly, we got here.
+      Click any tag to see every regret it pertains to.
+    </p>
+
+    <ul class="tag-cloud">
+      {% for tag in collections.tagList %}
+        <li>
+          <a href="/tags/{{ tag | slugify }}/">
+            <span class="tag-cloud__name">{{ tag }}</span>
+            <span class="tag-cloud__count mono">{{ collections[tag] | length }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <p class="tag-cloud__foot mono">
+      {{ collections.tagList | length }} tags across {{ collections.posts | length }} entries.
+      Some overlap is to be expected; some overlap is the whole point.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+---
+layout: base.njk
+pageType: home
+---
+
+<section class="hero">
+  <div class="wrap hero__inner">
+    <p class="eyebrow">Vol. I &middot; Ongoing &middot; No End in Sight</p>
+    <h1 class="hero__title">
+      A growing archive<br />
+      of <em>poor choices</em>,<br />
+      in the writers&rsquo; own words.
+    </h1>
+    <p class="hero__lede">
+      Contributors are invited to document, in suitable detail and with insufficient
+      remorse, the decisions they wish they had not made. Names have not been changed.
+      The guilty are protecting no one.
+    </p>
+    <p class="hero__cta">
+      <a class="btn" href="/contribute/">Submit a regret &rarr;</a>
+      <a class="btn btn--ghost" href="#archive">Browse the archive</a>
+    </p>
+  </div>
+</section>
+
+<section id="archive" class="archive">
+  <div class="wrap">
+    <header class="section-head">
+      <h2 class="section-head__title">The Archive</h2>
+      <p class="section-head__meta">
+        <span class="mono">{{ collections.posts | length }} entries on file</span>
+        <span aria-hidden="true">&middot;</span>
+        <span class="mono">sorted by recency, not severity</span>
+      </p>
+    </header>
+
+    <ol class="entries" reversed>
+      {% for post in collections.posts %}
+        <li class="entry">
+          <a class="entry__link" href="{{ post.url }}">
+            <div class="entry__num mono">№ {{ "%03d" | format(loop.revindex) }}</div>
+            <div class="entry__body">
+              <h3 class="entry__title">{{ post.data.title }}</h3>
+              {% if post.data.dek %}<p class="entry__dek">{{ post.data.dek }}</p>{% endif %}
+              <p class="entry__meta mono">
+                <span>{{ post.data.author }}</span>
+                <span aria-hidden="true">&middot;</span>
+                <time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+                <span aria-hidden="true">&middot;</span>
+                <span class="entry__regret" title="Regret rating, out of ten">
+                  regret <span class="pips">{{ post.data.regret | regretPips }}</span>
+                </span>
+              </p>
+              {% set entryTags = post.data.tags | realTags %}
+              {% if entryTags.length %}
+                <ul class="entry__tags" aria-label="Tags">
+                  {% for t in entryTags %}
+                    <li><span class="tag-chip tag-chip--static">{{ t }}</span></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+            <div class="entry__arrow" aria-hidden="true">&rarr;</div>
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>

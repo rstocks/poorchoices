@@ -1,0 +1,68 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - all
+    - posts
+    - tagList
+  addAllPagesToCollections: false
+layout: base.njk
+pageType: tag
+eleventyComputed:
+  title: "Tagged #{{ tag }}"
+permalink: "/tags/{{ tag | slugify }}/"
+---
+<section class="archive standard">
+  <div class="wrap">
+    <p class="post__crumb mono">
+      <a href="/tags/">All tags</a>
+      <span aria-hidden="true">&nbsp;/&nbsp;</span>
+      <span>#{{ tag }}</span>
+    </p>
+
+    <header class="section-head">
+      <p class="eyebrow">Tag</p>
+      <h1 class="post__title">#{{ tag }}</h1>
+      <p class="section-head__meta">
+        <span class="mono">{{ collections[tag] | length }} entries with this tag</span>
+        <span aria-hidden="true">&middot;</span>
+        <span class="mono">newest first</span>
+        <span aria-hidden="true">&middot;</span>
+        <a class="mono" href="/tags/{{ tag | slugify }}/feed.xml">subscribe</a>
+      </p>
+    </header>
+
+    {% set sorted = collections[tag] | reverse %}
+    <ol class="entries">
+      {% for post in sorted %}
+        <li class="entry">
+          <a class="entry__link" href="{{ post.url }}">
+            <div class="entry__num mono">{{ post.date | readableDate }}</div>
+            <div class="entry__body">
+              <h3 class="entry__title">{{ post.data.title }}</h3>
+              {% if post.data.dek %}<p class="entry__dek">{{ post.data.dek }}</p>{% endif %}
+              <p class="entry__meta mono">
+                <span>{{ post.data.author }}</span>
+                <span aria-hidden="true">&middot;</span>
+                <span class="entry__regret">regret <span class="pips">{{ post.data.regret | regretPips }}</span></span>
+              </p>
+              {% set entryTags = post.data.tags | realTags %}
+              {% if entryTags.length %}
+                <ul class="entry__tags" aria-label="Tags">
+                  {% for t in entryTags %}
+                    <li><span class="tag-chip tag-chip--static {% if t == tag %}tag-chip--current{% endif %}">{{ t }}</span></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+            <div class="entry__arrow" aria-hidden="true">&rarr;</div>
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+
+    <p class="post__nav"><a href="/tags/">&larr; all tags</a></p>
+  </div>
+</section>

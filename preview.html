@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Poor Choices — design preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/css/style.css" />
+  <style>
+    /* preview-only chrome */
+    .preview-bar {
+      position: sticky; top: 0; z-index: 50;
+      background: #1c1a17; color: #f5efe4;
+      border-bottom: 1px solid #000;
+      font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+      font-size: 12px;
+    }
+    .preview-bar__inner {
+      max-width: 72rem; margin: 0 auto;
+      padding: 10px clamp(20px, 4vw, 48px);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      flex-wrap: wrap;
+    }
+    .preview-bar__label { letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.75; }
+    .preview-bar__tabs { display: flex; gap: 4px; }
+    .preview-bar__tab {
+      background: transparent; color: #f5efe4;
+      border: 1px solid rgba(245,239,228,0.25);
+      padding: 6px 12px; border-radius: 3px;
+      font: inherit; cursor: pointer;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .preview-bar__tab:hover { border-color: #f5efe4; }
+    .preview-bar__tab[aria-pressed="true"] { background: #8a2a1f; border-color: #8a2a1f; }
+    [data-view] { display: none; }
+    [data-view].is-active { display: block; }
+  </style>
+</head>
+<body class="page">
+
+<div class="preview-bar">
+  <div class="preview-bar__inner">
+    <span class="preview-bar__label">Poor Choices · design preview (static render of the 11ty site)</span>
+    <div class="preview-bar__tabs" role="tablist" aria-label="Preview views">
+      <button class="preview-bar__tab" data-tab="home" aria-pressed="true">Home</button>
+      <button class="preview-bar__tab" data-tab="post" aria-pressed="false">A post</button>
+      <button class="preview-bar__tab" data-tab="tags" aria-pressed="false">Tags</button>
+      <button class="preview-bar__tab" data-tab="about" aria-pressed="false">About</button>
+      <button class="preview-bar__tab" data-tab="contribute" aria-pressed="false">Contribute</button>
+      <button class="preview-bar__tab" data-tab="thanks" aria-pressed="false">Thanks</button>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="#" aria-label="Poor Choices home">
+      <span class="brand__mark"><span class="brand__strike">Poor Choices</span></span>
+      <span class="brand__sub">an archive of regrets</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#" data-nav="home" aria-current="page">The Archive</a></li>
+        <li><a href="#" data-nav="tags">Tags</a></li>
+        <li><a href="#" data-nav="about">About</a></li>
+        <li><a href="#" data-nav="contribute">Contribute</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="site-main">
+
+  <!-- ============================= HOME ============================= -->
+  <div data-view="home" class="is-active">
+    <section class="hero">
+      <div class="wrap hero__inner">
+        <p class="eyebrow">Vol. I · Ongoing · No End in Sight</p>
+        <h1 class="hero__title">
+          A growing archive<br />
+          of <em>poor choices</em>,<br />
+          in the writers&rsquo; own words.
+        </h1>
+        <p class="hero__lede">
+          Contributors are invited to document, in suitable detail and with insufficient
+          remorse, the decisions they wish they had not made. Names have not been changed.
+          The guilty are protecting no one.
+        </p>
+        <p class="hero__cta">
+          <a class="btn" href="#" data-nav="contribute">Submit a regret →</a>
+          <a class="btn btn--ghost" href="#archive">Browse the archive</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="archive" class="archive">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 class="section-head__title">The Archive</h2>
+          <p class="section-head__meta">
+            <span class="mono">5 entries on file</span>
+            <span aria-hidden="true">·</span>
+            <span class="mono">sorted by recency, not severity</span>
+          </p>
+        </header>
+
+        <ol class="entries">
+
+          <li class="entry">
+            <a class="entry__link" href="#" data-nav="post">
+              <div class="entry__num mono">№ 005</div>
+              <div class="entry__body">
+                <h3 class="entry__title">I named my band &lsquo;The Variables&rsquo;</h3>
+                <p class="entry__dek">It seemed clever for about eleven seconds, which was, in retrospect, the full lifespan of the band.</p>
+                <p class="entry__meta mono">
+                  <span>Marlowe Quigg</span>
+                  <span aria-hidden="true">·</span>
+                  <time datetime="2026-04-18">18 April 2026</time>
+                  <span aria-hidden="true">·</span>
+                  <span class="entry__regret">regret <span class="pips">●●●●●●●●○○</span></span>
+                </p>
+                <ul class="entry__tags" aria-label="Tags">
+                  <li><a class="tag-chip" href="#" data-tag="music">music</a></li>
+                  <li><a class="tag-chip" href="#" data-tag="hubris">hubris</a></li>
+                  <li><a class="tag-chip" href="#" data-tag="public-shame">public-shame</a></li>
+                </ul>
+              </div>
+              <div class="entry__arrow" aria-hidden="true">→</div>
+            </a>
+          </li>
+
+          <li class="entry">
+            <a class="entry__link" href="#" data-nav="post">
+              <div class="entry__num mono">№ 004</div>
+              <div class="entry__body">
+                <h3 class="entry__title">I told the barber to &lsquo;just have fun with it&rsquo;</h3>
+                <p class="entry__dek">A sentence I now understand to be, in a barber&rsquo;s chair, the equivalent of declaring war.</p>
+                <p class="entry__meta mono">
+                  <span>Imogen Vass</span>
+                  <span aria-hidden="true">·</span>
+                  <time datetime="2026-03-02">2 March 2026</time>
+                  <span aria-hidden="true">·</span>
+                  <span class="entry__regret">regret <span class="pips">●●●●●●●●●○</span></span>
+                </p>
+                <ul class="entry__tags" aria-label="Tags">
+                  <li><a class="tag-chip" href="#" data-tag="grooming">grooming</a></li>
+                  <li><a class="tag-chip" href="#" data-tag="hubris">hubris</a></li>
+                  <li><a class="tag-chip" href="#" data-tag="public-shame">public-shame</a></li>
+                </ul>
+              </div>
+              <div class="entry__arrow" aria-hidden="true">→</div>
+            </a>
+          </li>
+
+          <li class="entry">
+            <a class="entry__link" href="#" data-nav="post">
+              <div class="entry__num mono">№ 003</div>
+              <div class="entry__body">
+                <h3 class="entry__title">I bought a kayak. I live in a third-floor apartment. I do not own a car.</h3>
+                <p class="entry__dek">An exercise in optimism, vertical logistics, and the load-bearing capacity of a stairwell handrail.</p>
+                <p class="entry__meta mono">
+                  <span>Dev Karunaratne</span>
+                  <span aria-hidden="true">·</span>
+                  <time datetime="2026-02-11">11 February 2026</time>
+                  <span aria-hidden="true">·</span>
+                  <span class="entry__regret">regret <span class="pips">●●●●●●○○○○</span></span>
+                </p>
+                <ul class="entry__tags" aria-label="Tags">
+                  <li><a class="tag-chip" href="#" data-tag="purchases">purchases</a></li>
+                  <li><a class="tag-chip" href="#" data-tag="neighbours">neighbours</a></li>
+                  <li><a class="tag-chip" href="#" data-tag="optimism">optimism</a></li>
+                </ul>
+              </div>
+              <div class="entry__arrow" aria-hidden="true">→</div>
+            </a>
+          </li>
+
+          <li class="entry">
+            <a class="entry__link" href="#" data-nav="post">
+              <div class="entry__num mono">№ 002</div>
+              <div class="entry__body">
+                <h3 class="entry__title">Reply All</h3>
+                <p class="entry__dek">Two simple words. One simple button. Four hundred and seventeen recipients.</p>
+                <p class="entry__meta mono">
+                  <span>Anonymous (for now; I work there until Friday)</span>
+                  <span aria-hidden="true">·</span>
+                  <time datetime="2026-01-19">19 January 2026</time>
+                  <span aria-hidden="true">·</span>
+                  <span class="entry__regret">regret <span class="pips">●●●●●●●●●●</span></span>
+                </p>
+                <ul class="entry__tags" aria-label="Tags">
+                  <li><a class="tag-chip" href="#" data-tag="work">work</a></li>
+                  <li><a class="tag-chip" href="#" data-tag="email">email</a></li>
+                  <li><a class="tag-chip" href="#" data-tag="public-shame">public-shame</a></li>
+                </ul>
+              </div>
+              <div class="entry__arrow" aria-hidden="true">→</div>
+            </a>
+          </li>
+
+          <li class="entry">
+            <a class="entry__link" href="#" data-nav="post">
+              <div class="entry__num mono">№ 001</div>
+              <div class="entry__body">
+                <h3 class="entry__title">I am, at thirty-four, learning the harp</h3>
+                <p class="entry__dek">It is going about as well as anyone who has ever met me would have predicted.</p>
+                <p class="entry__meta mono">
+                  <span>Cordelia Fenn</span>
+                  <span aria-hidden="true">·</span>
+                  <time datetime="2025-12-04">4 December 2025</time>
+                  <span aria-hidden="true">·</span>
+                  <span class="entry__regret">regret <span class="pips">●●●●○○○○○○</span></span>
+                </p>
+                <ul class="entry__tags" aria-label="Tags">
+                  <li><a class="tag-chip" href="#" data-tag="hobbies">hobbies</a></li>
+                  <li><a class="tag-chip" href="#" data-tag="music">music</a></li>
+                  <li><a class="tag-chip" href="#" data-tag="neighbours">neighbours</a></li>
+                </ul>
+              </div>
+              <div class="entry__arrow" aria-hidden="true">→</div>
+            </a>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================= POST ============================= -->
+  <div data-view="post">
+    <article class="post">
+      <div class="wrap post__wrap">
+        <p class="post__crumb mono">
+          <a href="#" data-nav="home">The Archive</a>
+          <span aria-hidden="true">&nbsp;/&nbsp;</span>
+          <span>Entry № 005</span>
+        </p>
+
+        <header class="post__head">
+          <p class="eyebrow">A Poor Choice, recounted</p>
+          <h1 class="post__title">I named my band &lsquo;The Variables&rsquo;</h1>
+          <p class="post__dek">It seemed clever for about eleven seconds, which was, in retrospect, the full lifespan of the band.</p>
+          <p class="post__byline mono">
+            <span>By <strong>Marlowe Quigg</strong></span>
+            <span aria-hidden="true">·</span>
+            <time datetime="2026-04-18">18 April 2026</time>
+            <span aria-hidden="true">·</span>
+            <span>3 min &ldquo;read,&rdquo; technically</span>
+          </p>
+          <ul class="post__tags" aria-label="Tags">
+            <li><a class="tag-chip" href="#" data-tag="music">music</a></li>
+            <li><a class="tag-chip" href="#" data-tag="hubris">hubris</a></li>
+            <li><a class="tag-chip" href="#" data-tag="public-shame">public-shame</a></li>
+          </ul>
+        </header>
+
+        <aside class="regret-card" aria-label="Regret summary">
+          <header class="regret-card__head mono">The Regret, Catalogued</header>
+          <dl class="regret-card__grid">
+            <div>
+              <dt class="mono">Regret rating</dt>
+              <dd>
+                <span class="pips" aria-hidden="true">●●●●●●●●○○</span>
+                <span class="regret-card__num">8<span class="regret-card__denom">/10</span></span>
+              </dd>
+            </div>
+            <div>
+              <dt class="mono">Would do again?</dt>
+              <dd class="regret-card__verdict regret-card__verdict--no">No. (Asterisk.)</dd>
+            </div>
+            <div>
+              <dt class="mono">Lesson learned</dt>
+              <dd><em>If you have to explain the band name to your own bassist, the gig is already going badly.</em></dd>
+            </div>
+            <div>
+              <dt class="mono">Cost</dt>
+              <dd>One ironed shirt, $40 in flyer printing, my dignity.</dd>
+            </div>
+          </dl>
+        </aside>
+
+        <div class="post__body prose">
+          <p>The first sign that <strong>The Variables</strong> was going to be a problem came when our drummer, Pat, asked &mdash; reasonably &mdash; what the name meant. I said it was a maths joke. Pat said, &ldquo;Right, but what&rsquo;s the <em>joke</em>.&rdquo;</p>
+          <p>I did not have an answer. I still do not have an answer.</p>
+
+          <h2>The flyer</h2>
+          <p>I designed the flyer myself, which is its own line item in the broader regret. I used a font I had downloaded that morning. The venue&rsquo;s owner, a man named Greg who has seen many bands, looked at it for some time and then said: &ldquo;Mate.&rdquo;</p>
+          <blockquote>I assumed this was praise. It was not praise.</blockquote>
+          <p>We played to thirteen people, four of whom were the other band. One of the remaining nine left during our second song to take a phone call and did not return. I have thought about that phone call almost every day since.</p>
+
+          <h2>What I would have named us instead</h2>
+          <p>Anything. Genuinely anything. &ldquo;Two Beers Please.&rdquo; &ldquo;The Sound Check.&rdquo; &ldquo;Greg.&rdquo; In hindsight, &ldquo;Greg&rdquo; would have at least gotten us a second booking on the strength of the in-joke alone.</p>
+          <p>The band broke up six weeks later, citing &ldquo;creative differences,&rdquo; which is what you say when the creative difference is that one person named the band <em>The Variables</em>.</p>
+        </div>
+
+        <footer class="post__foot">
+          <hr />
+          <p class="mono post__foot-line">
+            Tagged <a href="#" data-tag="music">#music</a>, <a href="#" data-tag="hubris">#hubris</a>, <a href="#" data-tag="public-shame">#public-shame</a>.
+            Submitted 18 April 2026 by Marlowe Quigg, who has since made other choices, not all of them better.
+          </p>
+          <p class="post__nav"><a href="#" data-nav="home">← back to the archive</a></p>
+        </footer>
+      </div>
+    </article>
+  </div>
+
+  <!-- ============================= TAGS ============================= -->
+  <div data-view="tags">
+    <section class="standard">
+      <div class="wrap standard__wrap">
+        <p class="eyebrow">The Index</p>
+        <h1>Tags.</h1>
+        <p class="dek">
+          An incomplete taxonomy of how, exactly, we got here.
+          Click any tag to see every regret it pertains to.
+        </p>
+
+        <ul class="tag-cloud" id="preview-tag-cloud">
+          <!-- populated by JS from the post data so counts stay honest -->
+        </ul>
+
+        <p class="tag-cloud__foot mono" id="preview-tag-cloud-foot"></p>
+      </div>
+    </section>
+
+    <section class="archive" id="preview-tag-listing" hidden>
+      <div class="wrap">
+        <p class="post__crumb mono">
+          <a href="#" data-nav="tags">All tags</a>
+          <span aria-hidden="true">&nbsp;/&nbsp;</span>
+          <span id="preview-tag-crumb"></span>
+        </p>
+
+        <header class="section-head">
+          <p class="eyebrow">Tag</p>
+          <h2 class="post__title" id="preview-tag-title"></h2>
+          <p class="section-head__meta">
+            <span class="mono" id="preview-tag-count"></span>
+            <span aria-hidden="true">·</span>
+            <span class="mono">newest first</span>
+          </p>
+        </header>
+
+        <ol class="entries" id="preview-tag-entries"></ol>
+
+        <p class="post__nav"><a href="#" data-nav="tags" data-clear-tag>&larr; all tags</a></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================= ABOUT ============================= -->
+  <div data-view="about">
+    <section class="standard">
+      <div class="wrap standard__wrap">
+        <p class="eyebrow">About the publication</p>
+        <h1>An incomplete defence of <em>Poor Choices</em>.</h1>
+        <p class="dek">A periodical, in the loosest possible sense of the word, devoted to the public cataloguing of private misjudgements.</p>
+
+        <div class="prose">
+          <p><em>Poor Choices</em> began, as many poor choices do, after midnight, in a group chat, between two people who should have been asleep. The premise was simple and remains simple: there are decisions, and there are <em>decisions</em>, and most of us are carrying around at least one of the latter that we have never given the dignity of a proper write-up.</p>
+          <p>Our contributors are not experts. That is, in fact, the entire qualification. They are people who once said yes when no would have done, or who chose the harp over a savings account, or who hit Reply All on a Tuesday. They have agreed to write about it. They have not, for the most part, agreed to learn from it.</p>
+
+          <h2>Editorial principles, such as they are</h2>
+          <ul>
+            <li><strong>No advice columns.</strong> If we knew, we wouldn&rsquo;t be here.</li>
+            <li><strong>No takedowns.</strong> You may only volunteer your own regrets, not others&rsquo;.</li>
+            <li><strong>No redemption arcs.</strong> Sometimes the kayak is just in the living room.</li>
+            <li><strong>No AI confessions.</strong> If a machine made the choice, the machine can write about it.</li>
+          </ul>
+
+          <h2>The masthead</h2>
+          <p><em>Poor Choices</em> is edited by a rotating committee of people who answered an email they should not have answered. The masthead changes whenever someone reads their own contribution back and asks to be removed from it. We honour these requests, eventually.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================= CONTRIBUTE ============================= -->
+  <div data-view="contribute">
+    <section class="standard">
+      <div class="wrap standard__wrap">
+        <p class="eyebrow">Submissions</p>
+        <h1>Submit a regret.</h1>
+        <p class="dek">We welcome contributions from people who have made at least one decision they would, with the benefit of hindsight, like to formally walk back.</p>
+
+        <div class="prose">
+          <h2>What we&rsquo;re looking for</h2>
+          <ul>
+            <li><strong>First-person.</strong> Your regret, not your housemate&rsquo;s.</li>
+            <li><strong>500&ndash;1,500 words.</strong> Enough to commit. Not enough to spiral.</li>
+            <li><strong>A regret rating, 1&ndash;10.</strong> Be honest. We can tell when you&rsquo;re not.</li>
+            <li><strong>An answer to: &ldquo;Would you do it again?&rdquo;</strong> &ldquo;Yes, and probably will&rdquo; is an acceptable answer.</li>
+            <li><strong>One lesson learned, optional.</strong> &ldquo;None, frankly&rdquo; is also an acceptable answer.</li>
+          </ul>
+
+          <h2>What we are not looking for</h2>
+          <ul>
+            <li>Crimes. (Speak to a lawyer, not us.)</li>
+            <li>Other people&rsquo;s regrets, dressed up as your own.</li>
+            <li>Things that are obviously a flex pretending to be a regret. We can see you.</li>
+          </ul>
+        </div>
+
+        <form
+          class="submission"
+          name="regret-submission"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          action="/thanks/"
+          onsubmit="event.preventDefault(); show('thanks');"
+        >
+          <input type="hidden" name="form-name" value="regret-submission" />
+          <p class="submission__honeypot" hidden aria-hidden="true">
+            <label>Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+
+          <div class="submission__row">
+            <div>
+              <label for="f-name">Your name (or a credible alias)</label>
+              <input id="f-name" name="name" type="text" required placeholder="e.g. Cordelia Fenn" />
+            </div>
+            <div>
+              <label for="f-cat">Primary tag</label>
+              <select id="f-cat" name="primary-tag">
+                <option>hubris</option>
+                <option>purchases</option>
+                <option>work</option>
+                <option>email</option>
+                <option>grooming</option>
+                <option>hobbies</option>
+                <option>neighbours</option>
+                <option>music</option>
+                <option>public-shame</option>
+                <option>optimism</option>
+                <option>other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="submission__field">
+            <label for="f-title">Working title</label>
+            <input id="f-title" name="title" type="text" required placeholder="e.g. I told the barber to 'just have fun with it'" />
+          </div>
+
+          <div class="submission__row">
+            <div>
+              <label for="f-rating">Regret rating (1&ndash;10)</label>
+              <input id="f-rating" name="regret-rating" type="number" min="1" max="10" required placeholder="8" />
+            </div>
+            <div>
+              <label for="f-again">Would you do it again?</label>
+              <select id="f-again" name="would-do-again">
+                <option>No. (Asterisk.)</option>
+                <option>Yes, and probably will</option>
+                <option>I genuinely can&rsquo;t tell</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="submission__field">
+            <label for="f-lesson">Lesson learned, if any</label>
+            <input id="f-lesson" name="lesson" type="text" placeholder="None, frankly." />
+          </div>
+
+          <div class="submission__field">
+            <label for="f-email">Email (optional, in case we need to clarify a detail)</label>
+            <input id="f-email" name="email" type="email" placeholder="you@example.com" />
+          </div>
+
+          <div class="submission__field">
+            <label for="f-body">The regret itself</label>
+            <textarea id="f-body" name="body" required placeholder="Begin somewhere. The middle is fine. The middle is often where regrets live."></textarea>
+          </div>
+
+          <div class="submission__foot">
+            <p class="submission__note">Form is wired for Netlify Forms. By submitting, you agree to be edited, gently, by someone with their own regrets.</p>
+            <button class="btn" type="submit">Submit for consideration</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================= THANKS ============================= -->
+  <div data-view="thanks">
+    <section class="standard">
+      <div class="wrap standard__wrap">
+        <p class="eyebrow">Submission received</p>
+        <h1>Thank you. We have your regret.</h1>
+        <p class="dek">
+          It will be read, in due course, by a person who has read many such regrets and is,
+          by all accounts, holding up. We&rsquo;ll be in touch only if we need to clarify a
+          detail or, much more rarely, if we want to publish it.
+        </p>
+
+        <div class="prose">
+          <p>In the meantime, you may wish to:</p>
+          <ul>
+            <li>Go for a short walk.</li>
+            <li>Re-read what you submitted, just the once, and then close the tab.</li>
+            <li>Resist the urge to email us a follow-up explaining the bit you forgot.
+              (We have all done this. None of us recommend it.)</li>
+          </ul>
+
+          <h2>What happens next</h2>
+          <p>
+            Submissions are reviewed by the rotating editorial committee. We aim to respond
+            within a fortnight, but our schedule is, on principle, also one of our regrets.
+          </p>
+        </div>
+
+        <p class="hero__cta" style="margin-top: 32px;">
+          <a class="btn" href="#" data-nav="home">&larr; back to the archive</a>
+          <a class="btn btn--ghost" href="#" data-nav="contribute">Submit another (already?)</a>
+        </p>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__lede">
+      <em>Poor Choices</em> is published whenever someone works up the nerve.
+      All opinions expressed are, regrettably, the contributors&rsquo; own.
+    </p>
+    <p class="site-footer__meta">
+      <span>© 2026 Poor Choices</span>
+      <span aria-hidden="true">&nbsp;·&nbsp;</span>
+      <span>Est. on a Tuesday, against better judgement.</span>
+      <span aria-hidden="true">&nbsp;·&nbsp;</span>
+      <a href="#" class="site-footer__feed" onclick="event.preventDefault(); alert('In the real build this points to /feed.xml — an Atom feed of every regret.');">Subscribe via RSS</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // ----------- data -----------
+  const POSTS = [
+    { num: "005", title: "I named my band ‘The Variables’", dek: "It seemed clever for about eleven seconds, which was, in retrospect, the full lifespan of the band.", author: "Marlowe Quigg", date: "18 April 2026", iso: "2026-04-18", regret: 8, tags: ["music", "hubris", "public-shame"] },
+    { num: "004", title: "I told the barber to ‘just have fun with it’", dek: "A sentence I now understand to be, in a barber’s chair, the equivalent of declaring war.", author: "Imogen Vass", date: "2 March 2026", iso: "2026-03-02", regret: 9, tags: ["grooming", "hubris", "public-shame"] },
+    { num: "003", title: "I bought a kayak. I live in a third-floor apartment. I do not own a car.", dek: "An exercise in optimism, vertical logistics, and the load-bearing capacity of a stairwell handrail.", author: "Dev Karunaratne", date: "11 February 2026", iso: "2026-02-11", regret: 6, tags: ["purchases", "neighbours", "optimism"] },
+    { num: "002", title: "Reply All", dek: "Two simple words. One simple button. Four hundred and seventeen recipients.", author: "Anonymous (for now; I work there until Friday)", date: "19 January 2026", iso: "2026-01-19", regret: 10, tags: ["work", "email", "public-shame"] },
+    { num: "001", title: "I am, at thirty-four, learning the harp", dek: "It is going about as well as anyone who has ever met me would have predicted.", author: "Cordelia Fenn", date: "4 December 2025", iso: "2025-12-04", regret: 4, tags: ["hobbies", "music", "neighbours"] },
+  ];
+  const pips = (n) => "●".repeat(n) + "○".repeat(10 - n);
+  const allTags = [...new Set(POSTS.flatMap(p => p.tags))].sort();
+  const countFor = (t) => POSTS.filter(p => p.tags.includes(t)).length;
+
+  // ----------- render tags index -----------
+  const cloud = document.getElementById('preview-tag-cloud');
+  cloud.innerHTML = allTags.map(t => `
+    <li>
+      <a href="#" data-tag="${t}">
+        <span class="tag-cloud__name">${t}</span>
+        <span class="tag-cloud__count mono">${countFor(t)}</span>
+      </a>
+    </li>
+  `).join('');
+  document.getElementById('preview-tag-cloud-foot').textContent =
+    `${allTags.length} tags across ${POSTS.length} entries. Some overlap is to be expected; some overlap is the whole point.`;
+
+  // ----------- render a tag listing -----------
+  function renderTag(tagName) {
+    const listing = document.getElementById('preview-tag-listing');
+    const entries = document.getElementById('preview-tag-entries');
+    document.getElementById('preview-tag-crumb').textContent = '#' + tagName;
+    document.getElementById('preview-tag-title').textContent = '#' + tagName;
+    const matches = POSTS.filter(p => p.tags.includes(tagName));
+    document.getElementById('preview-tag-count').textContent =
+      `${matches.length} entr${matches.length === 1 ? 'y' : 'ies'} with this tag`;
+    entries.innerHTML = matches.map(p => `
+      <li class="entry">
+        <a class="entry__link" href="#" data-nav="post">
+          <div class="entry__num mono">${p.date}</div>
+          <div class="entry__body">
+            <h3 class="entry__title">${p.title}</h3>
+            <p class="entry__dek">${p.dek}</p>
+            <p class="entry__meta mono">
+              <span>${p.author}</span>
+              <span aria-hidden="true">·</span>
+              <span class="entry__regret">regret <span class="pips">${pips(p.regret)}</span></span>
+            </p>
+            <ul class="entry__tags" aria-label="Tags">
+              ${p.tags.map(t => `<li><span class="tag-chip tag-chip--static${t === tagName ? ' tag-chip--current' : ''}">${t}</span></li>`).join('')}
+            </ul>
+          </div>
+          <div class="entry__arrow" aria-hidden="true">→</div>
+        </a>
+      </li>
+    `).join('');
+    listing.hidden = false;
+  }
+  function clearTag() {
+    document.getElementById('preview-tag-listing').hidden = true;
+  }
+
+  // ----------- view switcher -----------
+  const views = document.querySelectorAll('[data-view]');
+  const tabs  = document.querySelectorAll('.preview-bar__tab');
+  const navs  = document.querySelectorAll('.site-nav a');
+
+  function show(name) {
+    views.forEach(v => v.classList.toggle('is-active', v.dataset.view === name));
+    tabs.forEach(t => t.setAttribute('aria-pressed', t.dataset.tab === name ? 'true' : 'false'));
+    navs.forEach(a => {
+      const target = a.dataset.nav;
+      if (target === name) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    if (name !== 'tags') clearTag();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.tab)));
+
+  // Any element with data-nav switches view; any with data-tag goes to tags and renders the tag
+  document.addEventListener('click', (e) => {
+    const tagLink = e.target.closest('[data-tag]');
+    if (tagLink) {
+      e.preventDefault();
+      show('tags');
+      renderTag(tagLink.dataset.tag);
+      return;
+    }
+    const navLink = e.target.closest('[data-nav]');
+    if (navLink) {
+      e.preventDefault();
+      if (navLink.hasAttribute('data-clear-tag')) clearTag();
+      show(navLink.dataset.nav);
+    }
+  });
+</script>
+
+</body>
+</html>

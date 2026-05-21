@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if title %}{{ title }} &middot; {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ description or site.description }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="alternate" type="application/atom+xml" title="Poor Choices — Atom feed" href="/feed.xml" />
+    {% if tag %}
+    <link rel="alternate" type="application/atom+xml" title="Poor Choices — #{{ tag }}" href="/tags/{{ tag | slugify }}/feed.xml" />
+    {% endif %}
+  </head>
+  <body class="page page--{{ pageType or 'default' }}">
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap site-header__inner">
+        <a class="brand" href="/" aria-label="{{ site.title }} home">
+          <span class="brand__mark" aria-hidden="true">
+            <span class="brand__strike">{{ site.title }}</span>
+          </span>
+          <span class="brand__sub">an archive of regrets</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            {% for item in site.navigation %}
+              <li>
+                <a href="{{ item.url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.text }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="site-main">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer__inner">
+        <p class="site-footer__lede">
+          <em>Poor Choices</em> is published whenever someone works up the nerve.
+          All opinions expressed are, regrettably, the contributors' own.
+        </p>
+        <p class="site-footer__meta">
+          <span>&copy; {{ "now" | readableDate | slice(-4) }} {{ site.title }}</span>
+          <span aria-hidden="true">&nbsp;&middot;&nbsp;</span>
+          <span>Est. on a Tuesday, against better judgement.</span>
+          <span aria-hidden="true">&nbsp;&middot;&nbsp;</span>
+          <a href="/feed.xml" class="site-footer__feed">Subscribe via RSS</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

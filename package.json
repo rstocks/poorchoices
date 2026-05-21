@@ -1,0 +1,17 @@
+{
+  "name": "poor-choices",
+  "version": "0.1.0",
+  "description": "A blog where contributors document the poor choices they have made in their lives.",
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "debug": "DEBUG=Eleventy* eleventy",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.5",
+    "@11ty/eleventy-plugin-rss": "^2.0.4"
+  },
+  "license": "MIT"
+}
