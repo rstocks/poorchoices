@@ -5,6 +5,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
 
   // ---------- Pass-through static assets ----------
+  eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/fonts");
   eleventyConfig.addPassthroughCopy({ "src/_static": "/" });
