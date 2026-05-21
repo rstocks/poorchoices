@@ -51,6 +51,13 @@ export default async function (eleventyConfig) {
     return "●".repeat(n) + "○".repeat(10 - n);
   });
 
+  // Printf-style format filter — e.g. "%03d" | format(7) → "007"
+  eleventyConfig.addFilter("format", (fmt, value) => {
+    return fmt.replace(/%0(\d+)d/, (_, width) =>
+      String(value).padStart(parseInt(width, 10), "0")
+    );
+  });
+
   // Strip the structural "posts"/"all" tags so templates only render meaningful ones
   eleventyConfig.addFilter("realTags", (tags) => {
     return (tags || []).filter((t) => t !== "posts" && t !== "all");
