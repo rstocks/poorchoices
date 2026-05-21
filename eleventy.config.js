@@ -17,7 +17,7 @@ export default async function (eleventyConfig) {
   // Posts, newest first
   eleventyConfig.addCollection("posts", (collectionApi) => {
     return collectionApi
-      .getFilteredByGlob("src/posts/*.md")
+      .getFilteredByGlob("src/posts/*/*.md")
       .sort((a, b) => b.date - a.date);
   });
 
