@@ -5,7 +5,7 @@ pageType: post
 <article class="post">
   <div class="wrap post__wrap">
     <p class="post__crumb mono">
-      <a href="/">The Archive</a>
+      <a href="/archive/">The Archive</a>
       <span aria-hidden="true">&nbsp;/&nbsp;</span>
       <span>An Entry</span>
     </p>
@@ -39,8 +39,10 @@ pageType: post
         <div>
           <dt class="mono">Regret rating</dt>
           <dd>
-            <span class="pips" aria-hidden="true">{{ regret | regretPips }}</span>
-            <span class="regret-card__num">{{ regret }}<span class="regret-card__denom">/10</span></span>
+            <a class="regret-card__link" href="/regret/{{ regret }}/">
+              <span class="pips" aria-hidden="true">{{ regret | regretPips }}</span>
+              <span class="regret-card__num">{{ regret }}<span class="regret-card__denom">/10</span></span>
+            </a>
           </dd>
         </div>
         <div>
@@ -77,9 +79,30 @@ pageType: post
         {%- endif %}
         Submitted by {{ author }}, who has since made other choices, not all of them better.
       </p>
-      <p class="post__nav">
-        <a href="/">&larr; back to the archive</a>
-      </p>
+
+      {% set prevPost = collections.posts | prevPost(page.url) %}
+      {% set nextPost = collections.posts | nextPost(page.url) %}
+      <nav class="post__nav" aria-label="Previous and next entries">
+        <div class="post__nav-prev">
+          {% if prevPost %}
+            <a href="{{ prevPost.url }}" rel="prev">
+              <span class="post__nav-label mono">&larr; Previous entry</span>
+              <span class="post__nav-title">{{ prevPost.data.title }}</span>
+            </a>
+          {% endif %}
+        </div>
+        <div class="post__nav-archive">
+          <a href="/archive/" class="mono">All entries</a>
+        </div>
+        <div class="post__nav-next">
+          {% if nextPost %}
+            <a href="{{ nextPost.url }}" rel="next">
+              <span class="post__nav-label mono">Next entry &rarr;</span>
+              <span class="post__nav-title">{{ nextPost.data.title }}</span>
+            </a>
+          {% endif %}
+        </div>
+      </nav>
     </footer>
   </div>
 </article>

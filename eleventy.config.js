@@ -22,6 +22,25 @@ export default async function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  // Unique regret scores actually used, sorted descending (10 → 1)
+  eleventyConfig.addCollection("regretList", (collectionApi) => {
+    const scores = new Set();
+    for (const item of collectionApi.getFilteredByGlob("src/posts/*/*.md")) {
+      if (item.data.regret != null) scores.add(Number(item.data.regret));
+    }
+    return [...scores].sort((a, b) => b - a);
+  });
+
+  // One collection per regret score: regret_1 … regret_10 (newest first)
+  for (let score = 1; score <= 10; score++) {
+    eleventyConfig.addCollection(`regret_${score}`, (collectionApi) => {
+      return collectionApi
+        .getFilteredByGlob("src/posts/*/*.md")
+        .filter((p) => Number(p.data.regret) === score)
+        .sort((a, b) => b.date - a.date);
+    });
+  }
+
   // All real tags (excluding the structural "posts"/"all" tags), sorted alphabetically
   eleventyConfig.addCollection("tagList", (collectionApi) => {
     const tagSet = new Set();
@@ -62,6 +81,17 @@ export default async function (eleventyConfig) {
   // Strip the structural "posts"/"all" tags so templates only render meaningful ones
   eleventyConfig.addFilter("realTags", (tags) => {
     return (tags || []).filter((t) => t !== "posts" && t !== "all");
+  });
+
+  // Adjacent-post helpers (collection is newest-first, so idx+1 = older = "prev")
+  eleventyConfig.addFilter("prevPost", (collection, currentUrl) => {
+    const idx = collection.findIndex((p) => p.url === currentUrl);
+    return idx !== -1 && idx < collection.length - 1 ? collection[idx + 1] : null;
+  });
+
+  eleventyConfig.addFilter("nextPost", (collection, currentUrl) => {
+    const idx = collection.findIndex((p) => p.url === currentUrl);
+    return idx > 0 ? collection[idx - 1] : null;
   });
 
   // ---------- Config ----------

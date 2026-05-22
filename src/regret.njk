@@ -1,0 +1,46 @@
+---
+layout: base.njk
+pageType: regret-index
+title: By Regret Level
+permalink: /regret/
+---
+<section class="standard">
+  <div class="wrap standard__wrap">
+    <p class="eyebrow">The Scale</p>
+    <h1>By Regret Level.</h1>
+    <p class="dek">
+      Sorted by severity, not recency. Ten is reserved for choices that
+      keep contributors awake. One is for choices they&rsquo;d almost make again.
+    </p>
+
+    <ol class="regret-scale" reversed>
+      {% for score in range(10, 0, -1) %}
+        {% set posts = collections["regret_" + score] %}
+        {% if posts and posts.length %}
+          <li class="regret-scale__item">
+            <a class="regret-scale__link" href="/regret/{{ score }}/">
+              <div class="regret-scale__score">
+                <span class="regret-scale__num mono">{{ score }}<span class="regret-scale__denom">/10</span></span>
+                <span class="pips regret-scale__pips" aria-hidden="true">{{ score | regretPips }}</span>
+              </div>
+              <div class="regret-scale__body">
+                <span class="regret-scale__count mono">{{ posts.length }} {% if posts.length == 1 %}entry{% else %}entries{% endif %}</span>
+                <ul class="regret-scale__titles">
+                  {% for post in posts %}
+                    <li>{{ post.data.title }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="entry__arrow" aria-hidden="true">&rarr;</div>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+
+    <p class="tag-cloud__foot mono">
+      {{ collections.posts | length }} entries rated across {{ collections.regretList | length }} distinct regret levels.
+      The average is left as an exercise for the reader.
+    </p>
+  </div>
+</section>

@@ -274,6 +274,11 @@ a:hover { color: var(--ink); }
   .entry__num { font-size: 0.7rem; }
 }
 
+.archive-more {
+  margin-top: 2rem;
+  text-align: center;
+}
+
 /* ---------- Post page ---------- */
 
 .post { padding: clamp(40px, 6vw, 72px) 0 clamp(60px, 9vw, 120px); }
@@ -365,6 +370,86 @@ a.tag-chip:hover { background: var(--ink); color: var(--paper); border-color: va
 .tag-cloud a:hover .tag-cloud__count { color: var(--accent-soft); }
 .tag-cloud__foot { margin-top: 28px; color: var(--ink-mute); }
 
+/* ---------- Regret scale (on /regret/ index) ---------- */
+
+.regret-scale {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.regret-scale__item {
+  border-bottom: 1px solid var(--rule);
+}
+
+.regret-scale__link {
+  display: grid;
+  grid-template-columns: 10rem 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 18px 0;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 120ms ease;
+}
+.regret-scale__link:hover { background: rgba(255,255,255,0.45); }
+.regret-scale__link:hover .regret-scale__num { color: var(--accent); }
+.regret-scale__link:hover .entry__arrow { transform: translateX(4px); color: var(--accent); }
+
+.regret-scale__score {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.regret-scale__num {
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--ink-soft);
+  transition: color 120ms ease;
+}
+.regret-scale__denom { color: var(--ink-mute); font-size: 1rem; }
+.regret-scale__pips { font-size: 0.65rem; letter-spacing: 0.05em; }
+
+.regret-scale__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.regret-scale__count { font-size: 0.78rem; color: var(--ink-mute); }
+.regret-scale__titles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.regret-scale__titles li + li::before { content: " · "; color: var(--ink-mute); }
+.regret-scale__titles li { display: inline; }
+
+@media (max-width: 600px) {
+  .regret-scale__link { grid-template-columns: 7rem 1fr auto; gap: 1rem; }
+}
+
+/* Regret level heading */
+.regret-level__score {
+  font-size: 1.4rem;
+  margin-left: 0.4em;
+  vertical-align: middle;
+}
+
+/* Regret card link (score → /regret/N/) */
+.regret-card__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  text-decoration: none;
+  color: inherit;
+}
+.regret-card__link:hover .pips { color: var(--accent-soft); }
+.regret-card__link:hover .regret-card__num { color: var(--accent); }
+
 /* Regret card */
 .regret-card {
   margin: 32px 0 40px;
@@ -444,8 +529,64 @@ a.tag-chip:hover { background: var(--ink); color: var(--paper); border-color: va
 .post__foot { margin-top: 56px; color: var(--ink-mute); }
 .post__foot hr { border: 0; border-top: 1px solid var(--rule); margin: 0 0 18px; }
 .post__foot-line { margin: 0 0 18px; }
-.post__nav a { font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.04em; text-decoration: none; color: var(--ink-soft); }
+.post__nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.post__nav-prev { text-align: left; }
+.post__nav-archive { text-align: center; padding-top: 0.2em; }
+.post__nav-next { text-align: right; }
+
+.post__nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+.post__nav-prev a { align-items: flex-start; }
+.post__nav-next a { align-items: flex-end; }
 .post__nav a:hover { color: var(--accent); }
+
+.post__nav-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+}
+.post__nav a:hover .post__nav-label { color: var(--accent-soft); }
+
+.post__nav-title {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+}
+
+.post__nav-archive a {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+  white-space: nowrap;
+}
+.post__nav-archive a:hover { color: var(--accent); }
+
+@media (max-width: 600px) {
+  .post__nav {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .post__nav-archive {
+    grid-column: 1 / -1;
+    order: -1;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0.25rem;
+  }
+}
 
 /* ---------- About / Contribute ---------- */
 

@@ -5,8 +5,9 @@
   "url": "https://poorchoices.net",
   "author": "The Committee for Decisions Already Made",
   "navigation": [
-    { "text": "The Archive", "url": "/" },
+    { "text": "The Archive", "url": "/archive/" },
     { "text": "Tags",        "url": "/tags/" },
+    { "text": "Regret",      "url": "/regret/" },
     { "text": "About",       "url": "/about/" },
     { "text": "Contribute",  "url": "/contribute/" }
   ]

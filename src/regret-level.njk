@@ -1,0 +1,66 @@
+---
+pagination:
+  data: collections.regretList
+  size: 1
+  alias: score
+  addAllPagesToCollections: false
+layout: base.njk
+pageType: regret-level
+eleventyComputed:
+  title: "Regret level {{ score }}/10"
+permalink: "/regret/{{ score }}/"
+---
+<section class="archive standard">
+  <div class="wrap">
+    <p class="post__crumb mono">
+      <a href="/regret/">Regret levels</a>
+      <span aria-hidden="true">&nbsp;/&nbsp;</span>
+      <span>{{ score }}/10</span>
+    </p>
+
+    <header class="section-head">
+      <p class="eyebrow">Regret level</p>
+      <h1 class="post__title">
+        <span class="pips">{{ score | regretPips }}</span>
+        <span class="regret-level__score mono">{{ score }}<span class="regret-card__denom">/10</span></span>
+      </h1>
+      <p class="section-head__meta">
+        {% set levelPosts = collections["regret_" + score] %}
+        <span class="mono">{{ levelPosts | length }} {% if levelPosts | length == 1 %}entry{% else %}entries{% endif %} at this level</span>
+        <span aria-hidden="true">&middot;</span>
+        <span class="mono">newest first</span>
+      </p>
+    </header>
+
+    {% set levelPosts = collections["regret_" + score] %}
+    <ol class="entries">
+      {% for post in levelPosts %}
+        <li class="entry">
+          <a class="entry__link" href="{{ post.url }}">
+            <div class="entry__num mono">{{ post.date | readableDate }}</div>
+            <div class="entry__body">
+              <h3 class="entry__title">{{ post.data.title }}</h3>
+              {% if post.data.dek %}<p class="entry__dek">{{ post.data.dek }}</p>{% endif %}
+              <p class="entry__meta mono">
+                <span>{{ post.data.author }}</span>
+                <span aria-hidden="true">&middot;</span>
+                <span class="entry__regret">regret <span class="pips">{{ post.data.regret | regretPips }}</span></span>
+              </p>
+              {% set entryTags = post.data.tags | realTags %}
+              {% if entryTags.length %}
+                <ul class="entry__tags" aria-label="Tags">
+                  {% for t in entryTags %}
+                    <li><span class="tag-chip tag-chip--static">{{ t }}</span></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+            <div class="entry__arrow" aria-hidden="true">&rarr;</div>
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+
+    <p class="post__nav"><a href="/regret/">&larr; all regret levels</a></p>
+  </div>
+</section>
