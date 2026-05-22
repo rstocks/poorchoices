@@ -83,6 +83,9 @@ export default async function (eleventyConfig) {
     return (tags || []).filter((t) => t !== "posts" && t !== "all");
   });
 
+  // Return the first N items of an array (Nunjucks `slice` is a column-splitter, not JS slice)
+  eleventyConfig.addFilter("limit", (arr, n) => arr.slice(0, n));
+
   // Adjacent-post helpers (collection is newest-first, so idx+1 = older = "prev")
   eleventyConfig.addFilter("prevPost", (collection, currentUrl) => {
     const idx = collection.findIndex((p) => p.url === currentUrl);

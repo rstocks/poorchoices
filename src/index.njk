@@ -34,7 +34,7 @@ pageType: home
       </p>
     </header>
 
-    {% set recentPosts = collections.posts | slice(0, 5) %}
+    {% set recentPosts = collections.posts | limit(5) %}
     <ol class="entries" start="{{ collections.posts | length }}" reversed>
       {% for post in recentPosts %}
         <li class="entry">
