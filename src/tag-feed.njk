@@ -1,12 +1,8 @@
 ---
 pagination:
-  data: collections
+  data: collections.tagList
   size: 1
   alias: tag
-  filter:
-    - all
-    - posts
-    - tagList
   addAllPagesToCollections: false
 eleventyExcludeFromCollections: true
 permalink: "/tags/{{ tag | slugify }}/feed.xml"
