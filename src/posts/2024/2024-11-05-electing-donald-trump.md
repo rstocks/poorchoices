@@ -2,7 +2,7 @@
 title: "Electing Donald Trump. Again."
 dek: "Putting an even more senile old man in charge again seems like a great idea."
 author: "Anonymous"
-date: 2026-02-11
+date: 2024-11-05
 regret: 10
 would_do_again: false
 lesson: "The American voters are stupid."
